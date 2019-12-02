@@ -33,9 +33,16 @@ def index():
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
+
+
+        # Hash the password
+        hashed_pswd = pbkdf2_sha256.hash(password)
+                    # pbkdf2_sha256.using(rounds=29000, salt_size=16).hash(password)        de el default values  w bnst5dm eltare2a de 3shan law 3ayzen n3`yar el number bta3 el iteration and size
+
+
         
         # Add user to the database
-        user = User(username=username, password=password)
+        user = User(username=username, password=hashed_pswd)
         db.session.add(user)
         db.session.commit()
 
