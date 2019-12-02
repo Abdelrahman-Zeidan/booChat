@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_socketio import SocketIO, emit
 
 
@@ -29,6 +29,7 @@ socketio = SocketIO(app)
 def index():
     reg_form = RegistrationForm()
 
+    # Update database if validation success
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
@@ -37,9 +38,24 @@ def index():
         user = User(username=username, password=password)
         db.session.add(user)
         db.session.commit()
-        return "Inserted into the Database"
+
+        return redirect(url_for('login'))
 
     return render_template("index.html", form=reg_form)
+
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    
+    login_form = LoginForm()
+
+    # Allow login if validation success
+    if login_form.validate_on_submit():
+        return "Logged in, finally!"
+    
+    return render_template("login.html", form=login_form)
+
 
 
 
