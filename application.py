@@ -1,6 +1,8 @@
 import os
 
 from flask import Flask, render_template, redirect, url_for
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
+
 from flask_socketio import SocketIO, emit
 
 
@@ -23,6 +25,18 @@ db = SQLAlchemy(app)
 
 
 socketio = SocketIO(app)
+
+
+# Configure flask login
+login = LoginManager(app)
+login.init_app(app)
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -59,10 +73,49 @@ def login():
 
     # Allow login if validation success
     if login_form.validate_on_submit():
-        return "Logged in, finally!"
+        user_object = User.query.filter_by(username=login_form.username.data).first()
+        login_user(user_object)
+
+        # el tare2a el 2ola w hnshlha law 3yzen n3ml el tare2a el tanya
+        return redirect(url_for('chat'))
+
+        # el tare2a eltanya w Bnst5dm el tare2a de ma3 @login_required ba3d el @app.route("/chat")
+        # if current_user.is_authenticated:
+        #     return "Logged in with flask-login!"
+
+
+
     
     return render_template("login.html", form=login_form)
 
+
+
+
+@app.route("/chat", methods=["GET", "POST"])
+def chat():
+
+    if not current_user.is_authenticated:
+        return "Please login before accessing chat"
+
+    return "Chat with me"
+
+
+
+# El tare2a el tanya
+# @app.route("/chat", methods=["GET", "POST"])
+# @login_required
+# def chat():
+
+#     return "Chat with me"
+
+
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+
+    logout_user()
+    return "logged out using flask-login!"
 
 
 

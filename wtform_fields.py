@@ -21,7 +21,7 @@ def invalid_credentials(form, field):
 
     elif not pbkdf2_sha256.verify(password_entered, user_object.password):
         raise ValidationError("Username or Password are incorrect")
-
+        
 
 
 class RegistrationForm(FlaskForm):
