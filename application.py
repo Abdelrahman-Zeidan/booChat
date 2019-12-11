@@ -14,7 +14,7 @@ from models import *
 #Configure app
 app = Flask(__name__)
 
-app.secret_key = 'replace later'
+# app.secret_key = 'replace later'
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
