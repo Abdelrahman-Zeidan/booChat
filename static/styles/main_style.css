@@ -1,0 +1,13 @@
+.page-heading {
+    margin: 20px;
+    margin-left: 475px;
+    padding: 10px;
+    width: 400px;
+    border: 1px solid green;
+}
+
+.form-inputs {
+    margin: 20px;
+    margin-left: 400px;
+    width: 500px;
+}

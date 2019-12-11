@@ -1,0 +1,70 @@
+    body {
+    font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    }
+
+    .sidenav p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    }
+
+    .sidenav p:hover {
+    color: #f1f1f1;
+    }
+
+    .sidenav h4 {
+        color: rgb(235, 132, 64);
+        font-size: 30px;
+        display: block;
+        margin-left: 10px;
+    }
+
+    .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    }
+
+
+    .message_section {
+        border: 1px solid black;
+        padding: 20px;
+        margin: 20px;
+        max-height: 530px;
+        overflow: auto;
+    }
+
+    .sendArea {
+        width: 70%;
+        position: fixed;
+        top: 570px;
+        left: 210px;
+    }
+
+    .chat_input {
+        margin-right: 5px;
+    }
+
+    
+    .Logout-section {
+        text-align: right;
+    }
+
+    @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+    }
