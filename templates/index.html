@@ -6,13 +6,16 @@
 
 
 {% block content %}
-    <h1>Get Started</h1>
+    <h1 class="text-success text-center page-heading">Welcome to <span class="text-danger">T-Chat</span> </h1>
+    <h3 class="text-primary text-center ">Get Started</h3>
 
-    <form action="{{ url_for('index') }}", method="POST">
-
-        {{ displayField(form.username, 'Username', autocomplete='off', autofocus=true) }}
-        {{ displayField(form.password, 'Password') }}
-        {{ displayField(form.confirm_pswd, 'Retype Password') }}
+    <form class="text-center border-light p-3" action="{{ url_for('index') }}", method="POST">
+        <div class="form-inputs">
+            {{ displayField(form.username, 'Username', autocomplete='off', autofocus=true) }}
+            {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.confirm_pswd, 'Retype Password') }}
+        </div>
+        
 
         <div>
             {{ form.submit_button }}
@@ -21,4 +24,7 @@
         {{ form.csrf_token }}
 
     </form>
+    <p class="text-center">Have an account?
+        <a href="login">Login</a>
+    </p>
 {% endblock %}

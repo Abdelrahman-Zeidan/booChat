@@ -4,12 +4,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let room = "Lounge";
     joinRoom("Lounge");
 
+
     // Display incoming messages
     socket.on('message', data => {
         const p = document.createElement('p');
         const span_username = document.createElement('span');
         const span_timestamp = document.createElement('span');
         const br = document.createElement('br');
+
+        // Chat messages Style
+        p.style.background = "#3084e4"
+        p.style.borderRadius = "1%";
+        p.style.color = "white";
+        p.style.padding = "10px";
+
+        span_username.style.color = "#921f1f";
+        span_username.style.borderBottom = "thin solid black";
+        span_username.style.fontSize = "large";
+
+        span_timestamp.style.color = "black";
+        span_timestamp.style.fontSize = "medium";
+
+
+        var AutoScroll = document.getElementById("display_message_section");
+        AutoScroll.scrollTop = AutoScroll.scrollHeight;
+
+
+
+
+
 
         if (data.username) {
             span_username.innerHTML = data.username;
@@ -71,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function printSysMsg(msg) {
         const p = document.createElement('p');
         p.innerHTML = msg;
+        p.style.color = "#f70707"
         document.querySelector('#display_message_section').append(p);
     }
 })

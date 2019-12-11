@@ -2,7 +2,7 @@ import os
 
 from time import localtime, strftime
 
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
@@ -103,6 +103,11 @@ def chat():
         flash('Please login.', 'danger')
         return redirect(url_for('login'))
 
+    if request.method == "POST":
+        NewRoom = request.form.get("AddRoom")
+        if NewRoom not in ROOMS:
+            ROOMS.append(NewRoom)
+
     return render_template("chat.html", username=current_user.username, rooms=ROOMS)
 
 
@@ -147,6 +152,7 @@ def leave(data):
 
     leave_room(data["room"])
     send({'msg': data['username'] + " has left the " + data['room'] + " room"}, room=data['room'])
+
 
 
 if __name__ == '__main__':

@@ -7,13 +7,15 @@
 
 
 {% block content %}
-    <h2>Login now!</h2>
-    <p>Enter your username and password to start booChat</p>
+    <h2 class="text-center text-primary">Login now!</h2>
+    <p class="text-center">Enter your username and password to start <span class="text-danger">T-Chat</span> </p>
     
-    <form action="{{ url_for('login') }}" method="POST">
-        {{ displayField(form.username, 'Username', autocomplete='off', autofocus=true) }}
+    <form class="text-center border-light p-3" action="{{ url_for('login') }}" method="POST">
+        <div class="form-inputs">
+            {{ displayField(form.username, 'Username', autocomplete='off', autofocus=true) }}
 
-        {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.password, 'Password') }}
+        </div>
 
         <div>
             {{ form.submit_button }}
